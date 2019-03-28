@@ -53,12 +53,13 @@ public class PantallaJuego implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         // Pinta la imagen en pantalla
         batch.begin();
-        batch.draw(nave.imagen, nave.posicion.x, nave.posicion.y);
+        //Cambiamos las coordenadas de la nave para hacer que el spwan se en la parte derechad e la pantalla
+         batch.draw(nave.imagen, nave.posicion.y, nave.posicion.x);
         for (Roca roca : rocas)
-            batch.draw(roca.imagen, roca.posicion.x, roca.posicion.y);
+            batch.draw(roca.imagen, roca.posicion.y, roca.posicion.x);
         for (Bala bala : balas)
             batch.draw(bala.imagen, bala.posicion.x, bala.posicion.y);
-        fuente.draw(batch, "Vidas", 100, 100);
+        //fuente.draw(batch, "Vidas", 100, 100);
         batch.end();
 
         moverRocas();
@@ -71,7 +72,7 @@ public class PantallaJuego implements Screen {
 
         for (Roca roca : rocas) {
             roca.caer();
-            if (roca.posicion.y + roca.imagen.getHeight() <= 0)
+            if (roca.posicion.x + roca.imagen.getHeight() <= 0)
                 rocas.removeValue(roca, true);
 
             if (roca.rect.overlaps(nave.rect))
