@@ -12,6 +12,6 @@ public class Bala extends Ovni {
     }
 
     public void mover() {
-        posicion.x += 10;
+        posicion.y    += 10;
     }
 }

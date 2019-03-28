@@ -26,6 +26,7 @@ public class PantallaJuego implements Screen {
     Array<Roca> rocas;
     Array<Bala> balas;
     long ultimaRoca;
+    Texture background;
     SpriteBatch batch;
     BitmapFont fuente = new BitmapFont(Gdx.files.internal("default.fnt"));
 
@@ -39,18 +40,25 @@ public class PantallaJuego implements Screen {
     @Override
     public void show() {
 
-        nave = new Nave(new Texture("ship.png"), 0, 0);
+        nave = new Nave(new Texture("car2.png"), 0, 0);
         rocas = new Array<Roca>();
         ultimaRoca = TimeUtils.millis();
         balas = new Array<Bala>();
+
+        background = new Texture("fondo2.png");
     }
+
+
 
     @Override
     public void render(float delta) {
 
         // Limpia la pantalla
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        //Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        batch.draw(background,0,0);
+        batch.end();
         // Pinta la imagen en pantalla
         batch.begin();
         //Cambiamos las coordenadas de la nave para hacer que el spwan se en la parte derechad e la pantalla
@@ -58,7 +66,7 @@ public class PantallaJuego implements Screen {
         for (Roca roca : rocas)
             batch.draw(roca.imagen, roca.posicion.y, roca.posicion.x);
         for (Bala bala : balas)
-            batch.draw(bala.imagen, bala.posicion.x, bala.posicion.y);
+            batch.draw(bala.imagen, bala.posicion.y, bala.posicion.x);
         //fuente.draw(batch, "Vidas", 100, 100);
         batch.end();
 
@@ -90,7 +98,7 @@ public class PantallaJuego implements Screen {
     private void generarRoca() {
 
         if (TimeUtils.millis() - ultimaRoca > Constantes.TIEMPO_ENTRE_ROCAS) {
-            Texture imagenRoca = new Texture("stone.png");
+            Texture imagenRoca = new Texture("ghost.png");
             Roca roca = new Roca(imagenRoca,
                     MathUtils.random(0, Constantes.ANCHURA - imagenRoca.getWidth()),
                     Constantes.ALTURA);
@@ -103,12 +111,12 @@ public class PantallaJuego implements Screen {
 
     private void comprobarInput() {
         // El usuario pulsa la tecla DERECHA
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
             nave.mover(new Vector2(10, 0));
         }
 
         // El usuario pulsa la tecla IZQUIERDA
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
             nave.mover(new Vector2(-10, 0));
         }
 

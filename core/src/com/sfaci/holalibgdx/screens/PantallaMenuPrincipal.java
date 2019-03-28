@@ -42,7 +42,7 @@ public class PantallaMenuPrincipal implements Screen {
         tabla.setFillParent(true);
         stage.addActor(tabla);
 
-        background = new Texture("fondo.jpg");
+        background = new Texture("fondo1.png");
 
         VisTextButton btJugar = new VisTextButton("JUGAR");
         btJugar.addListener(new ClickListener() {
@@ -53,14 +53,7 @@ public class PantallaMenuPrincipal implements Screen {
             }
         });
 
-        VisTextButton btConfigurar = new VisTextButton("CONFIGURAR");
-        btConfigurar.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaConfiguracion());
-                dispose();
-            }
-        });
+
 
         VisTextButton btSalir = new VisTextButton("SALIR");
         btSalir.addListener(new ClickListener() {
@@ -72,7 +65,6 @@ public class PantallaMenuPrincipal implements Screen {
         tabla.row();
         tabla.add(btJugar).center().pad(5).width(200).height(50);
         tabla.row();
-        tabla.add(btConfigurar).center().pad(5).width(200).height(50);
         tabla.row();
         tabla.add(btSalir).center().pad(5).width(200).height(50);
 
