@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -50,7 +51,6 @@ public class PantallaJuego implements Screen {
     }
 
 
-
     @Override
     public void render(float delta) {
 
@@ -58,12 +58,12 @@ public class PantallaJuego implements Screen {
         //Gdx.gl.glClearColor(1, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.begin();
-        batch.draw(background,0,0);
+        batch.draw(background, 0, 0);
         batch.end();
         // Pinta la imagen en pantalla
         batch.begin();
         //Cambiamos las coordenadas de la nave para hacer que el spwan se en la parte derechad e la pantalla
-         batch.draw(nave.imagen, nave.posicion.y, nave.posicion.x);
+        batch.draw(nave.imagen, nave.posicion.y, nave.posicion.x);
         for (Roca roca : rocas)
             batch.draw(roca.imagen, roca.posicion.y, roca.posicion.x);
         for (Bala bala : balas)
