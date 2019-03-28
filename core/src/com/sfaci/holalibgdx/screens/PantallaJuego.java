@@ -1,5 +1,6 @@
 package com.sfaci.holalibgdx.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -152,5 +153,6 @@ public class PantallaJuego implements Screen {
     public void dispose() {
         batch.dispose();
         fuente.dispose();
+        ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaFinJuego());
     }
 }

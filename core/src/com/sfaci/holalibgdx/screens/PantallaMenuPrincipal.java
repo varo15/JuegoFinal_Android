@@ -55,7 +55,6 @@ public class PantallaMenuPrincipal implements Screen {
         });
 
 
-
         VisTextButton btSalir = new VisTextButton("SALIR");
         btSalir.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -82,7 +81,7 @@ public class PantallaMenuPrincipal implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        batch.draw(background,0,0);
+        batch.draw(background, 0, 0);
         batch.end();
 
         stage.act(dt);
@@ -110,6 +109,7 @@ public class PantallaMenuPrincipal implements Screen {
 
     @Override
     public void dispose() {
+
         stage.dispose();
     }
 }
