@@ -5,6 +5,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,9 +23,16 @@ import com.sfaci.holalibgdx.util.Constantes;
 public class PantallaMenuPrincipal implements Screen {
 
     Stage stage;
+    //Añadir imagen de fondo
+    //Crear nueva textura
+    Texture background;
+    SpriteBatch batch;
+
 
     @Override
     public void show() {
+
+        batch = new SpriteBatch();
 
         if (!VisUI.isLoaded())
             VisUI.load();
@@ -32,6 +41,8 @@ public class PantallaMenuPrincipal implements Screen {
         VisTable tabla = new VisTable();
         tabla.setFillParent(true);
         stage.addActor(tabla);
+
+        background = new Texture("fondo.jpg");
 
         VisTextButton btJugar = new VisTextButton("JUGAR");
         btJugar.addListener(new ClickListener() {
@@ -73,6 +84,10 @@ public class PantallaMenuPrincipal implements Screen {
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        batch.begin();
+        batch.draw(background,0,0);
+        batch.end();
 
         stage.act(dt);
         stage.draw();
