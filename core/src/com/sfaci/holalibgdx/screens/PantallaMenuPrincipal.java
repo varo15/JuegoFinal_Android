@@ -3,6 +3,7 @@ package com.sfaci.holalibgdx.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
@@ -69,6 +70,9 @@ public class PantallaMenuPrincipal implements Screen {
         tabla.add(btSalir).center().pad(5).width(200).height(50);
 
         Gdx.input.setInputProcessor(stage);
+        Music music_level1 = Gdx.audio.newMusic(Gdx.files.internal("Ghostbusters.mp3"));
+        music_level1.setLooping(true);
+        music_level1.play();
     }
 
     @Override
