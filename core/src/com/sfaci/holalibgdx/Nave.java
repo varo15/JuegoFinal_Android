@@ -16,8 +16,8 @@ public class Nave extends Ovni{
     public void mover(Vector2 movimiento) {
         posicion.add(movimiento);
 
-        if (posicion.x + imagen.getWidth() >= Constantes.ANCHURA)
-            posicion.x = Constantes.ANCHURA - imagen.getWidth();
+        if (posicion.x + imagen.getHeight() >= Constantes.ANCHURA)
+            posicion.x = Constantes.ANCHURA - imagen.getHeight();
 
         if (posicion.x < 0)
             posicion.x = 0;

@@ -1,5 +1,7 @@
 package com.sfaci.holalibgdx;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -13,5 +15,7 @@ public class Bala extends Ovni {
 
     public void mover() {
         posicion.y    += 10;
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("shot2.mp3"));
+        music.play();
     }
 }

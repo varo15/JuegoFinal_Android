@@ -69,9 +69,9 @@ public class PantallaMenuPrincipal implements Screen {
         tabla.add(btSalir).center().pad(5).width(200).height(50);
 
         Gdx.input.setInputProcessor(stage);
-        Music music_level1 = Gdx.audio.newMusic(Gdx.files.internal("Ghostbusters.mp3"));
-        music_level1.setLooping(true);
-        music_level1.play();
+        Music music = Gdx.audio.newMusic(Gdx.files.internal("Ghostbusters.mp3"));
+        music.setLooping(true);
+        music.play();
     }
 
     @Override
