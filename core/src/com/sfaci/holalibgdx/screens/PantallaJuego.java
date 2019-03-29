@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,7 +12,6 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.sfaci.holalibgdx.Bala;
 import com.sfaci.holalibgdx.Nave;
 import com.sfaci.holalibgdx.Principal;
 import com.sfaci.holalibgdx.Roca;
@@ -26,7 +24,6 @@ public class PantallaJuego implements Screen {
 
     Nave nave;
     Array<Roca> rocas;
-    Array<Bala> balas;
     long ultimaRoca;
     Texture background;
     SpriteBatch batch;
@@ -45,7 +42,6 @@ public class PantallaJuego implements Screen {
         nave = new Nave(new Texture("car2.png"), 0, 0);
         rocas = new Array<Roca>();
         ultimaRoca = TimeUtils.millis();
-        balas = new Array<Bala>();
 
         background = new Texture("fondo2.png");
     }
@@ -66,13 +62,19 @@ public class PantallaJuego implements Screen {
         batch.draw(nave.imagen, nave.posicion.y, nave.posicion.x);
         for (Roca roca : rocas)
             batch.draw(roca.imagen, roca.posicion.y, roca.posicion.x);
-        for (Bala bala : balas)
-            batch.draw(bala.imagen, bala.posicion.y, bala.posicion.x);
-        //fuente.draw(batch, "Vidas", 100, 100);
         batch.end();
 
         moverRocas();
-        moverBalas();
+        //moverBalas();
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            nave.mover(new Vector2(10, 0));
+        }
+
+        // El usuario pulsa la tecla IZQUIERDA
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            nave.mover(new Vector2(-10, 0));
+        }
+
         generarRoca();
         comprobarInput();
     }
@@ -85,15 +87,10 @@ public class PantallaJuego implements Screen {
                 rocas.removeValue(roca, true);
 
             if (roca.rect.overlaps(nave.rect))
-                System.exit(0);
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaFinJuego());
+            //System.exit(0);
 
         }
-    }
-
-    private void moverBalas() {
-
-        for (Bala bala : balas)
-            bala.mover();
     }
 
     private void generarRoca() {
@@ -121,12 +118,7 @@ public class PantallaJuego implements Screen {
             nave.mover(new Vector2(-10, 0));
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            Bala bala = new Bala(new Texture("bullet.png"),
-                    nave.posicion.x + nave.imagen.getWidth() / 2,
-                    nave.posicion.y + nave.imagen.getHeight());
-            balas.add(bala);
-        }
+
     }
 
     @Override
@@ -153,6 +145,5 @@ public class PantallaJuego implements Screen {
     public void dispose() {
         batch.dispose();
         fuente.dispose();
-        ((Game) Gdx.app.getApplicationListener()).setScreen(new PantallaFinJuego());
     }
 }
